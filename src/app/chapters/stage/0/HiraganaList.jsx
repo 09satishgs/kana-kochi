@@ -4,7 +4,7 @@ import DestructureJSON from "@/components/DestructureJSON";
 import useAudio from "@/customHooks/useAudio";
 import { useCallback } from "react";
 
-const Hiragana = () => {
+const HiraganaList = () => {
   const { speak } = useAudio();
   const getItemProps = useCallback(
     (item) => {
@@ -41,4 +41,4 @@ const Hiragana = () => {
     </div>
   );
 };
-export default Hiragana;
+export default HiraganaList;

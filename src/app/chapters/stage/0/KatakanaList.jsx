@@ -4,7 +4,7 @@ import DestructureJSON from "@/components/DestructureJSON";
 import useAudio from "@/customHooks/useAudio";
 import { useCallback } from "react";
 
-const Katakana = () => {
+const KatakanaList = () => {
   const { speak } = useAudio();
   const getItemProps = useCallback(
     (item) => {
@@ -40,4 +40,4 @@ const Katakana = () => {
     </div>
   );
 };
-export default Katakana;
+export default KatakanaList;

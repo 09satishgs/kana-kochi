@@ -164,6 +164,8 @@ const hiragana = {
 };
 
 export default hiragana;
-export const hiraganaChars = Object.values(hiragana)
-  .flat()
-  ?.map(({ char }) => char);
+const extractCharacters = (hg) =>
+  Object.values(hg)
+    .flat()
+    ?.map(({ char, ...rest }) => char || extractCharacters(rest));
+export const hiraganaChars = extractCharacters(hiragana).flat();

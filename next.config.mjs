@@ -2,8 +2,7 @@
 const nextConfig = {
   /* config options here */
   output: "export",
-  basePath: "/kana-kochi",
-  assetPrefix: "/kana-kochi/",
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

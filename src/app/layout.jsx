@@ -1,35 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import TopHeader from "@/components/TopHeader";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { GlobalsProvider } from "@/contexts/GlobalsContext";
 
 export const metadata = {
   title: "Kana Kochi",
-  description: "Learn Japanese Kana through quiz",
+  description: "Learn Hiragana and Katakana through sound-based games",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen bg-black overflow-y-auto overflow-x-hidden`}
-      >
-        <nav className="p-3 flex justify-around bg-gray-500 text-white items-center">
-          <Link href={"/"} children={"Home"} />
-          <Link href={"/chapters"} children={"Chapters"} />
-          <Link href={"/hiragana"} children={"Hiragana"} />
-          <Link href={"/katakana"} children={"Katakana"} />
-        </nav>
-        <div className="p-6">{children}</div>
+      <body className="min-h-screen  text-black bg-linear-to-br from-[#0e031e] to-[#0d0043] antialiased">
+        <GlobalsProvider>
+          <TopHeader />
+          {children}
+        </GlobalsProvider>
       </body>
     </html>
   );

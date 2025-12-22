@@ -1,12 +1,13 @@
 "use client";
 
 import Character from "@/components/Character";
-import { tailwindClass } from "@/constants";
-import { useAudio } from "@/hooks/useAudio";
+import { useNav } from "@/hooks/useNav";
+import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
 const LearnKanaClient = ({ data }) => {
-  const { speak } = useAudio({ lang: "ja-JP", rate: 0.9 });
+  const { navigate } = useNav();
+  const pathname = usePathname();
   const groupedArray = useMemo(() => {
     const groupedObj = Object.groupBy(data, ({ row }) => row);
     return Object.entries(groupedObj);
@@ -25,12 +26,7 @@ const LearnKanaClient = ({ data }) => {
                   <Character
                     key={kana?.id}
                     value={kana?.char}
-                    ariaLabel={`Play sound for ${kana?.romaji}`}
-                    animation="pulse"
-                    activeFeedback="learn"
-                    onClick={() => speak(kana?.char)}
-                    romaji={kana?.romaji}
-                    col={tailwindClass.COL_ST[+kana?.column + 1]}
+                    onClick={() => navigate(pathname + `?kana=${kana?.char}`)}
                   />
                 ))}
               </div>

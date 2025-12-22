@@ -4,7 +4,8 @@ import { useParams } from "next/navigation";
 import Button from "@/components/Button";
 import { useNav } from "@/hooks/useNav";
 import { useEffect } from "react";
-import { useGlobals } from "@/contexts/GlobalsContext";
+import { useGlobalsContext } from "@/contexts/GlobalsContext";
+import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
 
 /* =========================
    Constants
@@ -51,15 +52,10 @@ const INVALID_ROUTE_COPY = {
 
 const PlayScriptPage = () => {
   const params = useParams();
-  const navigate = useNav();
-  const { changeTitle } = useGlobals();
-
+  const { navigate } = useNav();
   const script = params?.script;
   const config = SCRIPT_CONFIG?.[script];
-
-  useEffect(() => {
-    changeTitle(`${script?.toUpperCase()} - Play`);
-  }, [script]);
+  usePageTitleUpdater(`${script?.toUpperCase()} - Play`);
 
   if (!config) {
     return (

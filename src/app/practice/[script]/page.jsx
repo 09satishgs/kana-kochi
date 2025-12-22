@@ -3,44 +3,51 @@
 import { useSearchParams, useParams, usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-import KanaImage from "@/components/KanaImage";
 import KanaVideo from "@/components/KanaVideo";
-import SoundButton from "@/components/SoundButton";
 import { useNav } from "@/hooks/useNav";
 import { hiragana } from "@/data/hiragana";
 import { katakana } from "@/data/katakana";
-import { useAudio } from "@/hooks/useAudio";
-import Button from "@/components/Button";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
-import { useGlobals } from "@/contexts/GlobalsContext";
+import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
+import PracticeKanaBase from "./PracticeKanaBase";
+import { SCRIPT_CONFIG } from "@/constants";
+import Loader from "@/components/Loader";
 
 export default function StrokePracticePage() {
   const pathname = usePathname();
   const { script } = useParams();
   const searchParams = useSearchParams();
-
-  const navigate = useNav();
-  const { speak } = useAudio();
-  const { changeTitle } = useGlobals();
+  const config = SCRIPT_CONFIG?.[script];
   const kana = searchParams.get("kana");
+  usePageTitleUpdater(
+    kana
+      ? `Practice ${script?.toUpperCase()} - ${kana}`
+      : `Practice ${script?.toUpperCase()}`
+  );
+
+  const { navigate } = useNav();
   const [assets, setAssets] = useState(null);
-  const { prevKana, nextKana } = useMemo(() => {
+  const { prevKana, nextKana, romaji } = useMemo(() => {
     let index;
     if (script === "hiragana") {
+      let romaji;
       index = hiragana?.findIndex(({ char }) => char === kana);
       return {
         prevKana: hiragana?.[index - 1]?.char,
         nextKana: hiragana?.[index + 1]?.char,
+        romaji: hiragana?.[index]?.romaji,
       };
     } else if (script === "katakana") {
       index = katakana?.findIndex(({ char }) => char === kana);
       return {
         prevKana: katakana?.[index - 1]?.char,
         nextKana: katakana?.[index + 1]?.char,
+        romaji: katakana?.[index]?.romaji,
       };
     }
     return;
   }, [kana, script]);
+
   const moveToPrev = () => {
     if (!prevKana) return;
     setAssets(null);
@@ -61,40 +68,28 @@ export default function StrokePracticePage() {
       .catch(console.error);
   }, [script, kana]);
 
-  useEffect(() => {
-    changeTitle(`Practice ${script?.toUpperCase()} - ${kana}`);
-  }, [script]);
-
   useKeyboardShortcut({
     ArrowRight: moveToNext,
     ArrowLeft: moveToPrev,
   });
 
   if (!kana) {
-    return <div className="p-6">Missing kana</div>;
+    return <PracticeKanaBase data={config?.data || []} />;
   }
 
   if (!assets) {
-    return <div className="p-6">Loading...</div>;
+    return <Loader />;
   }
 
   return (
-    <div className="flex h-full items-center px-4 ">
-      <div className="h-50  py-24 px-4 rounded-xl shadow flex-0 transition-all ease-in-out hover:scale-150">
-        {"<"}
-      </div>
-      <div className={`flex justify-between items-center p-12 flex-1`}>
-        <div className="h-100 w-100 hover:shadow-2xl rounded-2xl overflow-hidden">
-          <KanaImage src={assets.imageUrl} alt={kana} />
-        </div>
-        <div className="h-125 w-125 hover:shadow-2xl rounded-4xl overflow-hidden">
-          <KanaVideo src={assets.strokeUrl} />
-        </div>
-        <SoundButton kana={kana} />
-      </div>
-      <div className="h-50 py-24 px-4 rounded-xl shadow flex-0 transition-all ease-in-out hover:scale-150">
-        {">"}
-      </div>
+    <div className="mt-6 bg-white rounded-4xl m-8">
+      <KanaVideo
+        src={assets.strokeUrl}
+        imageSrc={assets.imageUrl}
+        kana={kana}
+        script={script}
+        romaji={romaji}
+      />
     </div>
   );
 }

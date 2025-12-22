@@ -28,11 +28,11 @@ const Character = ({
   value,
   onClick,
   ariaLabel,
-  size = "lg",
   feedback = "idle",
   activeFeedback = "learn",
   animation = "none",
   romaji,
+  col,
 }) => {
   const [state, setState] = useState("idle");
 
@@ -40,23 +40,23 @@ const Character = ({
     setState(activeFeedback);
     onClick?.(value);
   };
-  const sizeClasses =
-    size === "lg" ? "w-full h-full text-3xl" : "w-full h-full text-xl";
 
   return (
-    <button
-      title={romaji}
-      type="button"
-      aria-label={ariaLabel}
-      onClick={handleClick}
-      className={`
-        ${sizeClasses}
+    <div className={`min-h-32 h-full ${col} col-span-1`}>
+      <button
+        title={romaji}
+        type="button"
+        aria-label={ariaLabel}
+        onClick={handleClick}
+        className={`
         ${COLOR_VARIANTS[state === "idle" ? feedback : state]}
         ${ANIMATION_VARIANTS[animation]}
+        text-4xl
+        w-full h-full 
         backdrop-blur-md
         border
         rounded-2xl
-        flex items-center justify-center
+        flex flex-col items-center justify-center
         font-semibold
         transition-all
         duration-200
@@ -67,9 +67,11 @@ const Character = ({
         py-3
         cursor-pointer
       `}
-    >
-      {value}
-    </button>
+      >
+        {value}
+        <div className={`${state === "idle" ? "hidden" : ""}`}> {romaji}</div>
+      </button>
+    </div>
   );
 };
 

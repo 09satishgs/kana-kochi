@@ -1,6 +1,7 @@
 import TopHeader from "@/components/TopHeader";
 import "./globals.css";
 import { GlobalsProvider } from "@/contexts/GlobalsContext";
+import FloatingNav from "@/components/FloatingNav";
 
 export const metadata = {
   title: "Kana Kochi",
@@ -10,10 +11,11 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen  text-black bg-linear-to-br from-[#0e031e] to-[#0d0043] antialiased">
+      <body className="min-h-screen overflow-auto text-black bg-linear-to-br from-[#0e031e] to-[#0d0043] antialiased">
         <GlobalsProvider>
           <TopHeader />
-          {children}
+          <FloatingNav />
+          <div className="px-20">{children}</div>
         </GlobalsProvider>
       </body>
     </html>

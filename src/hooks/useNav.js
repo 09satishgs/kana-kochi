@@ -27,5 +27,5 @@ export const useNav = () => {
     router.push(href);
   };
 
-  return navigate;
+  return { navigate };
 };

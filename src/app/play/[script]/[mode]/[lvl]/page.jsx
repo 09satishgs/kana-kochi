@@ -3,7 +3,7 @@ import React from "react";
 import { useGameEngine } from "@/hooks/useGameEngine"; // Path to your hook
 import Icon from "@/components/Icon";
 import { useParams } from "next/navigation";
-import KeyboardSection from "./KeyboardSectiom";
+import KeyboardSection from "./KeyboardSection";
 
 export default function AudioGameScreen() {
   const { script, mode, lvl } = useParams();

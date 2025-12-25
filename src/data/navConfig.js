@@ -26,7 +26,7 @@ export const LEFT_NAV_CONFIG = [
     ],
   },
   {
-    icon: "icon-write",
+    icon: "icon-pen",
     label: "Practice",
     navTo: "/practice",
     description:

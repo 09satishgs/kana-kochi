@@ -214,7 +214,7 @@ export default function AudioGameScreen() {
                   {!showHint && (
                     <div className="absolute inset-0 flex items-center justify-center text-slate-500/50">
                       <div className="w-fit h-4">
-                        <Icon name="icon-lock" />
+                        <Icon name="icon-block" />
                       </div>
                     </div>
                   )}

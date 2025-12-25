@@ -7,7 +7,7 @@ import LearningTips from "@/components/LearningTips";
 
 export default function LearnLandingPage() {
   const { navigate } = useNav();
-  usePageTitleUpdater("Learn Japanese Kana");
+  usePageTitleUpdater("Learn  ---  Choose the Kana");
   return (
     <main className="px-6 py-12 text-white">
       <header className="max-w-4xl mx-auto mb-12 flex flex-col justify-center">

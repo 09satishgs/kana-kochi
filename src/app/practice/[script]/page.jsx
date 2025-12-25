@@ -20,9 +20,7 @@ export default function StrokePracticePage() {
   const config = SCRIPT_CONFIG?.[script];
   const kana = searchParams.get("kana");
   usePageTitleUpdater(
-    kana
-      ? `Practice ${script?.toUpperCase()} - ${kana}`
-      : `Practice ${script?.toUpperCase()}`
+    !kana ? `Practice  ---  Click on the Kana` : `Practice  ---  ${kana}`
   );
 
   const { navigate, prefetch } = useNav();
@@ -96,6 +94,8 @@ export default function StrokePracticePage() {
         romaji={romaji}
         onNext={moveToNext}
         onPrev={moveToPrev}
+        prevKana={prevKana}
+        nextKana={nextKana}
       />
     </div>
   );

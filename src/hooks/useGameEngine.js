@@ -164,7 +164,7 @@ export function useGameEngine({ script, mode, lvl }) {
   const loadNewSet = () => {
     const randomObj = pickARandom();
     setCurrent(randomObj);
-    const KEYBOARD_SIZE = 6;
+    const KEYBOARD_SIZE = 12;
     setKeyboardKeys(getKeyboardKeys(KEYBOARD_SIZE, allKeys, randomObj?.chars));
     setShowHint(false);
     setSelectedChars([]);

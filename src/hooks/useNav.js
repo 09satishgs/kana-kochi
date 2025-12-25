@@ -27,5 +27,14 @@ export const useNav = () => {
     router.push(href);
   };
 
-  return { navigate };
+  const prev = () => {};
+  const next = () => {};
+  const reload = () => {};
+
+  return {
+    navigate,
+    prev,
+    next,
+    reload,
+  };
 };

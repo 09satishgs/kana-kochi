@@ -172,9 +172,3 @@ export default function KanaVideo({ src, imageSrc, kana, romaji, script }) {
     </div>
   );
 }
-
-/* ---------- helpers ---------- */
-const btn = (active) =>
-  `px-4 py-2 rounded-lg border transition ${
-    active ? "bg-black text-white" : "bg-white text-black"
-  }`;

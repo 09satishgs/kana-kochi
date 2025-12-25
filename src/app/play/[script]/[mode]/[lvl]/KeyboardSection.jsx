@@ -88,7 +88,6 @@ export default function KeyboardSection({
             <button
               key={uniqueId}
               onClick={() => handleKeyClick(key, index)}
-              // Disable if this SPECIFIC button is already used, or if game is frozen
               disabled={isSelected}
               className={`
                 relative group h-20 rounded-2xl text-2xl font-bold shadow-[0_4px_0_0_rgba(0,0,0,0.1)] 

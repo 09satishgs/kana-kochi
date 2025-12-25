@@ -4,6 +4,7 @@ import { useGameEngine } from "@/hooks/useGameEngine"; // Path to your hook
 import Icon from "@/components/Icon";
 import { useParams } from "next/navigation";
 import KeyboardSection from "./KeyboardSection";
+import CircularTimer from "@/components/CircuilarTimer";
 
 export default function AudioGameScreen() {
   const { script, mode, lvl } = useParams();
@@ -102,60 +103,24 @@ export default function AudioGameScreen() {
           {/* Stats Card */}
           <div className="p-6 h-fit rounded-3xl bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex-none">
             <ul className="flex flex-col gap-3">
-              {/* Total Time */}
-              <li className="flex justify-between items-center p-3 rounded-2xl bg-slate-50/50 border border-slate-100/50">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-50 text-blue-500 rounded-lg">
-                    <Icon name="icon-clock" />
-                  </div>
-                  <b className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    Total Time
-                  </b>
-                </div>
-                <div className="font-mono text-lg font-bold text-slate-700">
-                  {formatTime(totalTime)}
-                </div>
-              </li>
-
-              {/* Time Spent */}
-              <li className="flex justify-between items-center p-3 rounded-2xl bg-slate-50/50 border border-slate-100/50">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-purple-50 text-purple-500 rounded-lg">
-                    <Icon name="icon-history" />
-                  </div>
-                  <b className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    Time Spent
-                  </b>
-                </div>
-                <div className="font-mono text-lg font-bold text-slate-700">
-                  {formatTime(timeSpent)}
-                </div>
-              </li>
-
               {/* Time Left */}
-              <li className="flex justify-between items-center p-3 rounded-2xl bg-slate-50/50 border border-slate-100/50">
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`p-2 rounded-lg ${
-                      timeLeft < 15
-                        ? "bg-red-50 text-red-500 animate-pulse"
-                        : "bg-emerald-50 text-emerald-500"
-                    }`}
-                  >
-                    <Icon name="icon-timer" />
-                  </div>
-                  <b className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    Time Left
-                  </b>
-                </div>
+              <div className="flex items-center gap-3">
                 <div
-                  className={`font-mono text-lg font-bold ${
-                    timeLeft < 15 ? "text-red-500" : "text-slate-700"
+                  className={`p-2 rounded-lg ${
+                    timeLeft < 15
+                      ? "bg-red-50 text-red-500 animate-pulse"
+                      : "bg-emerald-50 text-emerald-500"
                   }`}
                 >
-                  {formatTime(timeLeft)}
+                  <Icon name="icon-timer" />
                 </div>
-              </li>
+                <b className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                  Time Left
+                </b>
+              </div>
+              <div className="self-center">
+                <CircularTimer timeLeft={timeLeft} totalTime={totalTime} />
+              </div>
             </ul>
           </div>
         </div>
@@ -169,6 +134,7 @@ export default function AudioGameScreen() {
               <div className="flex flex-wrap justify-center gap-4">
                 {current?.chars?.map((_, index) => {
                   const isFilled = index < selectedChars.length;
+                  const nextInput = index === selectedChars.length;
                   const char = isFilled ? selectedChars[index] : "";
 
                   return (
@@ -179,15 +145,16 @@ export default function AudioGameScreen() {
               ${
                 isFilled
                   ? "bg-white text-slate-800 shadow-[0_4px_20px_rgb(0,0,0,0.08)] border-2 border-blue-100 scale-100 -translate-y-2"
-                  : "bg-slate-100/50 text-transparent border-2 border-slate-200/50 scale-95"
+                  : "bg-slate-200/50 text-transparent border-2 border-slate-300/50 scale-95"
               }
+              ${nextInput ? "animate-bounce" : ""}
             `}
                     >
                       {char}
 
                       {/* Underline decoration for empty slots */}
                       {!isFilled && (
-                        <div className="absolute bottom-4 w-8 h-1 bg-slate-200 rounded-full" />
+                        <div className="absolute bottom-4 w-8 h-1 bg-slate-300 rounded-full" />
                       )}
                     </div>
                   );
@@ -265,7 +232,7 @@ export default function AudioGameScreen() {
         </div>
 
         {/* Column 3: Keyboard Placeholder */}
-        <div className="h-full flex-3 flex flex-col gap-8">
+        <div className="h-full flex-4 flex flex-col gap-8">
           <div className="rounded-3xl bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex-3 relative overflow-hidden">
             <KeyboardSection
               keyboardKeys={keyboardKeys}

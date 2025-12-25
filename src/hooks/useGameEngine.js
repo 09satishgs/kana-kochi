@@ -10,7 +10,7 @@ const getTotalTime = () => {
 };
 const getMaxAllowedMistakes = () => {
   //Todo
-  return 5;
+  return 3;
 };
 const getKeyboardKeys = (len, pool = [], mustHave = []) => {
   // 1. Start with the mandatory keys

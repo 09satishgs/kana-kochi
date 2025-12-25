@@ -7,7 +7,7 @@ import LearningTips from "@/components/LearningTips";
 
 export default function PracticeLandingPage() {
   const { navigate } = useNav();
-  usePageTitleUpdater("Practice Writing Japanese Kana");
+  usePageTitleUpdater("Practice  ---  Choose the Kana");
   return (
     <main
       className="

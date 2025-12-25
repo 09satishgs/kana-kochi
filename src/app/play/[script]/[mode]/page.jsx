@@ -15,9 +15,7 @@ const LEVELS = [
 export default function PlayModePage() {
   const { script, mode } = useParams();
   const { navigate } = useNav();
-  usePageTitleUpdater(
-    `Play - ${script?.toUpperCase()} · ${mode?.toUpperCase()}`
-  );
+  usePageTitleUpdater(`Play  ---  Choose a Level`);
   return (
     <main className="min-h-screen px-6 py-12 text-white">
       <header className="max-w-4xl mx-auto mb-12">

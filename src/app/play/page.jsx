@@ -6,7 +6,7 @@ import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
 
 export default function PlayLandingPage() {
   const { navigate } = useNav();
-  usePageTitleUpdater("Play & Practice");
+  usePageTitleUpdater("Play  ---  Choose the Kana");
   return (
     <main className="min-h-screen px-6 py-12 text-white">
       <header className="max-w-4xl mx-auto mb-12">

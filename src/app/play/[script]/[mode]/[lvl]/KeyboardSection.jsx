@@ -1,3 +1,4 @@
+import { tailwindClass } from "@/constants";
 import { useAudio } from "@/hooks/useAudio";
 import React, { useState, useEffect } from "react";
 
@@ -5,19 +6,12 @@ export default function KeyboardSection({
   keyboardKeys,
   selectedChars,
   nextExpectedChar,
-
   selectLetter,
 }) {
   const { play } = useAudio();
-  // 1. Track specific button INDICES that are "Green" (Correctly Selected)
-  // We use a Set of numbers (indices) instead of string values to handle duplicates.
   const [consumedIndices, setConsumedIndices] = useState(new Set());
-
-  // 2. Track specific button INDICES that are "Red" (Transient Error)
   const [transientErrors, setTransientErrors] = useState(new Set());
 
-  // 3. SYNC EFFECT: Reset local state when the parent resets the game
-  // If selectedChars is emptied (on error or restart), we must clear our green buttons.
   useEffect(() => {
     if (selectedChars.length === 0) {
       setConsumedIndices(new Set());
@@ -26,63 +20,54 @@ export default function KeyboardSection({
 
   const handleKeyClick = (key, index) => {
     play(key);
-    // Unique ID for animation tracking
     const uniqueId = `${key}-${index}`;
-
-    // Check Logic
     const isCorrect = key === nextExpectedChar;
 
     if (isCorrect) {
-      // --- CORRECT PATH ---
-      // Mark this specific index as "consumed" so it stays green
       setConsumedIndices((prev) => {
         const newSet = new Set(prev);
         newSet.add(index);
         return newSet;
       });
-      // Fire Parent Action
       selectLetter(key);
     } else {
-      // --- INCORRECT PATH ---
-      // Trigger Red Flash on this specific button
       setTransientErrors((prev) => {
         const newSet = new Set(prev);
         newSet.add(uniqueId);
         return newSet;
       });
 
-      // Revert Red Flash after delay
       setTimeout(() => {
         setTransientErrors((prev) => {
           const newSet = new Set(prev);
           newSet.delete(uniqueId);
           return newSet;
         });
-      }, 800);
+      }, 500);
 
-      // Fire Parent Action (which will likely handle the mistake logic/reset)
       selectLetter(key);
     }
   };
 
   return (
-    <div className="h-full flex flex-col relative bg-slate-50/50">
-      {/* Instructions */}
-      <div className="p-6 pb-2">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-          Select the matching sound
+    <div className="h-full flex flex-col p-4 relative">
+      {/* Header - Neon Style */}
+      <div className="pb-4 border-b border-white/5 mb-2">
+        <h3 className="text-xl font-bold text-white tracking-widest flex items-center gap-6 justify-center">
+          Input
         </h3>
       </div>
 
       {/* Keyboard Grid */}
-      <div className="flex-1 p-6 pt-2 grid grid-cols-2 sm:grid-cols-3 gap-4 content-start overflow-y-auto">
+      <div
+        className={`flex-1 pt-2 grid ${
+          tailwindClass?.GRID_COLS?.[Math.ceil(keyboardKeys?.length / 2)]
+        } gap-3 content-start overflow-y-auto custom-scrollbar`}
+      >
         {keyboardKeys.map((key, index) => {
-          // Unique ID
           const uniqueId = `${key}-${index}`;
-
-          // Determine State based on INDEX, not Value
-          const isSelected = consumedIndices.has(index); // Green?
-          const isFlashingError = transientErrors.has(uniqueId); // Red?
+          const isSelected = consumedIndices.has(index);
+          const isFlashingError = transientErrors.has(uniqueId);
 
           return (
             <button
@@ -90,31 +75,36 @@ export default function KeyboardSection({
               onClick={() => handleKeyClick(key, index)}
               disabled={isSelected}
               className={`
-                relative group h-20 rounded-2xl text-2xl font-bold shadow-[0_4px_0_0_rgba(0,0,0,0.1)] 
-                transition-all duration-200 active:shadow-none active:translate-y-1 border-2
+                relative h-16 rounded-xl text-2xl font-bold border backdrop-blur-sm
+                transition-all duration-200 outline-none
                 
                 ${
-                  /* Priority 1: Flashing Error (Transient Red) */
+                  /* ERROR STATE: Red Neon Flash */
                   isFlashingError
-                    ? "bg-red-500 border-red-600 text-white scale-95 shadow-none z-20"
+                    ? "bg-red-500/20 border-red-500 text-red-500 shadow-[0_0_20px_rgba(239,68,68,0.5)] scale-95 z-20"
                     : ""
                 }
 
                 ${
-                  /* Priority 2: Selected (Persistent Green) */
+                  /* SUCCESS STATE: Green Glass (Disabled) */
                   !isFlashingError && isSelected
-                    ? "bg-emerald-500 border-emerald-600 text-white shadow-none opacity-50 cursor-default"
+                    ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-500/50 shadow-none cursor-not-allowed"
                     : ""
                 }
 
                 ${
-                  /* Priority 3: Default (White) */
+                  /* DEFAULT STATE: Dark Glass with Cyan Hover */
                   !isFlashingError && !isSelected
-                    ? "bg-white border-slate-200 text-slate-600 hover:border-blue-300 hover:text-blue-600 hover:-translate-y-1"
+                    ? "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.15)] active:scale-95"
                     : ""
                 }
               `}
             >
+              {isSelected && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full bg-emerald-500/5 animate-pulse rounded-xl" />
+                </div>
+              )}
               <span className="relative z-10">{key}</span>
             </button>
           );

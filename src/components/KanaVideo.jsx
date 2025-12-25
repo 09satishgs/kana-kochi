@@ -16,6 +16,8 @@ export default function KanaVideo({
   romaji,
   onNext,
   onPrev,
+  prevKana,
+  nextKana,
 }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -242,7 +244,7 @@ export default function KanaVideo({
         <div className="flex items-center justify-between pt-2 px-2">
           <button
             onClick={onPrev}
-            disabled={!onPrev}
+            disabled={!prevKana}
             className="flex items-center gap-3 text-slate-400 hover:text-cyan-400 disabled:opacity-30 disabled:hover:text-slate-400 transition-colors group"
           >
             <div className="p-3 rounded-full border border-slate-700 bg-slate-800 group-hover:border-cyan-400/50 group-hover:shadow-[0_0_10px_rgba(34,211,238,0.2)] transition-all">
@@ -262,7 +264,7 @@ export default function KanaVideo({
 
           <button
             onClick={onNext}
-            disabled={!onNext}
+            disabled={!nextKana}
             className="flex items-center gap-3 text-slate-400 hover:text-cyan-400 disabled:opacity-30 disabled:hover:text-slate-400 transition-colors group"
           >
             <span className="text-sm font-medium hidden sm:block">

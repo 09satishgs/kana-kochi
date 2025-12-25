@@ -14,7 +14,7 @@ const LearnScriptPage = () => {
   const params = useParams();
   const script = params?.script;
   const config = SCRIPT_CONFIG?.[script];
-  usePageTitleUpdater(`Cheat Sheet - ${params?.script?.toUpperCase()}`);
+  usePageTitleUpdater(`Learn  ---  Click on the Kana`);
 
   if (!config) {
     return (

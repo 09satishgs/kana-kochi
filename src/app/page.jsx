@@ -11,7 +11,7 @@ import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
 export default function HomePage() {
   const [openIndex, setOpenIndex] = useState(null);
   const { navigate } = useNav();
-  usePageTitleUpdater("Kana Kochi - Learn the Right Way");
+  usePageTitleUpdater("Kana Kochi  ---  Learn the Right Way");
   return (
     <main className="p-12">
       <div

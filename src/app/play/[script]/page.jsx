@@ -8,7 +8,7 @@ export default function PlayScriptPage() {
   const { script } = useParams();
   const { navigate } = useNav();
 
-  usePageTitleUpdater(`Play - ${script?.toUpperCase()}`);
+  usePageTitleUpdater(`Play  ---  Choose the Style`);
 
   return (
     <main className="min-h-screen px-6 py-12  text-white">

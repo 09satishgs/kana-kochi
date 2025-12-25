@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useNav } from "@/hooks/useNav";
 import Icon from "@/components/Icon";
 import { usePathname } from "next/navigation";
-import NAV_CONFIG from "@/data/navConfig";
+import Link from "next/link";
 
-export default function FloatingNav() {
-  const { navigate } = useNav();
+export default function FloatingNav({
+  config,
+  position = "top-1/2 left-4 -translate-y-1/2",
+}) {
   const pathname = usePathname();
   // Drill-down path: [{ label, routes }]
   const [path, setPath] = useState([]);
@@ -34,9 +35,7 @@ export default function FloatingNav() {
     setPath((prev) => prev.slice(0, -1));
   };
 
-  const handleNavigate = (navTo) => {
-    if (!navTo) return;
-    navigate(navTo);
+  const handleOnNavigate = () => {
     reset();
   };
 
@@ -76,7 +75,7 @@ export default function FloatingNav() {
     <div
       style={{ opacity }}
       className={`
-        fixed top-1/2 left-4 -translate-y-1/2
+        fixed ${position}
         z-50
         flex gap-2
         items-center
@@ -85,17 +84,19 @@ export default function FloatingNav() {
         shadow-xl
         transition-all duration-200
         ${opacity}
+        hover:bg-black/60
       `}
       onMouseEnter={handleHover}
       onMouseLeave={hanldeMouseLeave}
     >
       <div className="flex flex-col gap-2">
-        {NAV_CONFIG.map((item, idx) => (
+        {config.map((item, idx) => (
           <NavButton
             key={idx}
             item={item}
             expanded={isExpanded}
-            onNavigate={() => handleNavigate(item.navTo)}
+            navLink={item.navTo}
+            onClick={handleOnNavigate}
             onExpand={() => expandFromRoot(item.label, item.innerRoutes)}
             active={item.navTo === pathname}
           />
@@ -115,7 +116,8 @@ export default function FloatingNav() {
               key={idx}
               item={item}
               expanded={true}
-              onNavigate={() => handleNavigate(item.navTo)}
+              navLink={item.navTo}
+              onClick={handleOnNavigate}
               onExpand={() => expandNested(item.label, item.innerRoutes)}
               active={item.navTo === pathname}
             />
@@ -161,9 +163,10 @@ export default function FloatingNav() {
   );
 }
 
-function NavButton({ item, expanded, onNavigate, onExpand, active }) {
+function NavButton({ item, expanded, navLink, onExpand, active, onClick }) {
   return (
     <div
+      onClick={onClick}
       className={`
         flex items-center
         rounded-xl
@@ -179,8 +182,8 @@ function NavButton({ item, expanded, onNavigate, onExpand, active }) {
       `}
     >
       {/* Navigate zone */}
-      <div
-        onClick={onNavigate}
+      <Link
+        href={navLink}
         className="
           flex items-center gap-3
           px-4 py-3
@@ -195,7 +198,7 @@ function NavButton({ item, expanded, onNavigate, onExpand, active }) {
         {expanded && (
           <span className="text-white whitespace-nowrap">{item.label}</span>
         )}
-      </div>
+      </Link>
 
       {/* Expand zone */}
       {expanded && item.innerRoutes && (

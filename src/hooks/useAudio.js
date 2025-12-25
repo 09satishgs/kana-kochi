@@ -29,5 +29,5 @@ export function useAudio({ lang = "ja-JP", rate = 0.9, pitch = 1 } = {}) {
     [lang, rate, pitch]
   );
 
-  return { speak };
+  return { speak, play: speak };
 }

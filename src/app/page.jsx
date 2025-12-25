@@ -4,14 +4,14 @@ import { useState } from "react";
 import GlassCard from "@/components/GlassCard";
 import NavTree from "@/components/NavTree";
 import Icon from "@/components/Icon";
-import navConfig from "@/data/navConfig";
+import { LEFT_NAV_CONFIG } from "@/data/navConfig";
 import { useNav } from "@/hooks/useNav";
 import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
 
 export default function HomePage() {
   const [openIndex, setOpenIndex] = useState(null);
   const { navigate } = useNav();
-  usePageTitleUpdater("");
+  usePageTitleUpdater("Kana Kochi - Learn the Right Way");
   return (
     <main className="p-12">
       <div
@@ -22,9 +22,8 @@ export default function HomePage() {
           grid-flow-dense
         "
       >
-        {navConfig
-          ?.filter(({ navTo }) => navTo !== "/")
-          .map((section, idx) => (
+        {LEFT_NAV_CONFIG?.filter(({ navTo }) => navTo !== "/").map(
+          (section, idx) => (
             <GlassCard
               key={section.label}
               title={section.label}
@@ -40,7 +39,8 @@ export default function HomePage() {
             >
               {section.innerRoutes && <NavTree routes={section.innerRoutes} />}
             </GlassCard>
-          ))}
+          )
+        )}
       </div>
     </main>
   );

@@ -8,7 +8,6 @@ export async function GET(req) {
       script: searchParams.get("script"),
       total: 100,
     });
-
     return Response.json(words);
   } catch (err) {
     return Response.json({ error: err.message }, { status: 400 });

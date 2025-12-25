@@ -128,7 +128,7 @@ export default function PracticeLandingPage() {
         "
       >
         <div className="flex items-center gap-3 mb-4">
-          <Icon name="icon-write" size={22} />
+          <Icon name="icon-pen" size={22} />
           <h2 className="text-2xl font-semibold">Printable Practice Sheets</h2>
         </div>
 

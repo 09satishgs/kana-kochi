@@ -25,7 +25,7 @@ export default function StrokePracticePage() {
       : `Practice ${script?.toUpperCase()}`
   );
 
-  const { navigate } = useNav();
+  const { navigate, prefetch } = useNav();
   const [assets, setAssets] = useState(null);
   const { prevKana, nextKana, romaji } = useMemo(() => {
     let index;
@@ -73,6 +73,11 @@ export default function StrokePracticePage() {
     ArrowLeft: moveToPrev,
   });
 
+  useEffect(() => {
+    prefetch(`${pathname}?kana=${nextKana}`);
+    prefetch(`${pathname}?kana=${prevKana}`);
+  }, []);
+
   if (!kana) {
     return <PracticeKanaBase data={config?.data || []} />;
   }
@@ -82,13 +87,15 @@ export default function StrokePracticePage() {
   }
 
   return (
-    <div className="mt-6 bg-white rounded-4xl m-8">
+    <div className="mt-6 m-8">
       <KanaVideo
         src={assets.strokeUrl}
         imageSrc={assets.imageUrl}
         kana={kana}
         script={script}
         romaji={romaji}
+        onNext={moveToNext}
+        onPrev={moveToPrev}
       />
     </div>
   );

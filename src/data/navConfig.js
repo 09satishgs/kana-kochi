@@ -1,4 +1,4 @@
-const NAV_CONFIG = [
+export const LEFT_NAV_CONFIG = [
   {
     icon: "icon-home",
     label: "Home",
@@ -26,7 +26,7 @@ const NAV_CONFIG = [
     ],
   },
   {
-    icon: "icon-write",
+    icon: "icon-pen",
     label: "Practice",
     navTo: "/practice",
     description:
@@ -220,5 +220,26 @@ const NAV_CONFIG = [
     description: "Customize your learning experience and app preferences.",
   },
 ];
-
-export default NAV_CONFIG;
+export const RIGHT_NAV_CONFIG = [
+  {
+    icon: "icon-home",
+    label: "Back",
+    navType: { prev: true },
+    description:
+      "Your main dashboard and starting point for learning Japanese kana.",
+  },
+  {
+    icon: "icon-home",
+    label: "Reload",
+    navType: { reload: true },
+    description:
+      "Your main dashboard and starting point for learning Japanese kana.",
+  },
+  {
+    icon: "icon-home",
+    label: "Next",
+    navType: { next: true },
+    description:
+      "Your main dashboard and starting point for learning Japanese kana.",
+  },
+];

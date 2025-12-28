@@ -1,3 +1,4 @@
+import { ERROR, SCRIPT, TOTAL } from "@/constants";
 import { getGameWords, createWord } from "@/services/wordService";
 
 export async function GET(req) {
@@ -5,12 +6,12 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
 
     const words = await getGameWords({
-      script: searchParams.get("script"),
-      total: 100,
+      script: searchParams.get(SCRIPT),
+      total: TOTAL,
     });
     return Response.json(words);
   } catch (err) {
-    return Response.json({ error: err.message }, { status: 400 });
+    return Response.json({ [ERROR]: err.message }, { status: 400 });
   }
 }
 
@@ -20,6 +21,6 @@ export async function POST(req) {
     const result = await createWord(body);
     return Response.json(result, { status: 201 });
   } catch (err) {
-    return Response.json({ error: err.message }, { status: 400 });
+    return Response.json({ [ERROR]: err.message }, { status: 400 });
   }
 }

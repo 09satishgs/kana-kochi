@@ -39,3 +39,10 @@ export const tailwindClass = {
     9: "grid-cols-9",
   },
 };
+export const SCRIPT = "script";
+export const KANA = "kana";
+export const SCRIPT_AND_KANA_ARE_REQUIRED = "script and kana are required";
+export const USERID_REQUIRED = "userId required";
+export const TOTAL = 100;
+export const ERROR = "error";
+export const OK = "ok";

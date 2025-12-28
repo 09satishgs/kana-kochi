@@ -1,15 +1,16 @@
+import { SCRIPT, KANA, SCRIPT_AND_KANA_ARE_REQUIRED } from "@/constants";
 import { getKanaAssets } from "@/services/kanaAssetService";
 
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const script = searchParams.get("script");
-    const kana = searchParams.get("kana");
+    const script = searchParams.get(SCRIPT);
+    const kana = searchParams.get(KANA);
 
     if (!script || !kana) {
       return Response.json(
-        { error: "script and kana are required" },
+        { error: SCRIPT_AND_KANA_ARE_REQUIRED },
         { status: 400 }
       );
     }

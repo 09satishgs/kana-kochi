@@ -8,7 +8,7 @@ import { useMemo } from "react";
  * @param {Array} data - The flat array of Kana objects
  * @param {string} mode - "cheatsheet" (plays sound) or "practice" (navigates)
  */
-const LearnKanaClient = ({ data, mode = "learn" }) => {
+const LearnKanaClient = ({ data }) => {
   const groupedArray = useMemo(() => {
     // Note: Object.groupBy is a newer JS feature (ES2024).
     // Ensure your Node version supports it, otherwise use a reduce function.

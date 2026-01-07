@@ -2,7 +2,8 @@ import TopHeader from "@/components/TopHeader";
 import "./globals.css";
 import { GlobalsProvider } from "@/contexts/GlobalsContext";
 import FloatingNav from "@/components/FloatingNav";
-import { LEFT_NAV_CONFIG, RIGHT_NAV_CONFIG } from "@/data/navConfig";
+import { LEFT_NAV_CONFIG } from "@/data/navConfig";
+import WelcomeUser from "@/components/WelcomeUser";
 
 export const metadata = {
   title: "Kana Kochi",
@@ -12,7 +13,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen overflow-auto text-black bg-linear-to-br from-[#0e031e] to-[#0d0043] antialiased">
+      <body className="min-h-screen overflow-auto text-black bg-linear-to-br from-black to-[#000b0a] antialiased">
         <GlobalsProvider>
           <TopHeader />
           <FloatingNav
@@ -20,6 +21,7 @@ export default async function RootLayout({ children }) {
             position="top-1/2 left-4 -translate-y-1/2"
           />
           <div className="px-20">{children}</div>
+          <WelcomeUser />
         </GlobalsProvider>
       </body>
     </html>

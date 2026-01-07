@@ -94,7 +94,7 @@ export default function KanaVideo({
 
   return (
     // Outer Card: Dark Theme with Cyan Glow
-    <div className="w-full max-w-5xl mx-auto p-1 rounded-[3rem] bg-linear-to-b from-slate-800/40 to-slate-900/40 shadow-[0_0_40px_-10px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/30 backdrop-blur-sm">
+    <div className="w-full max-w-5xl mx-auto p-1 rounded-[3rem] bg-linear-to-b from-slate-800/40 to-slate-900/40 shadow-[0_0_40px_-10px_rgba(6,182,212,0.15)] ring-1 ring-[#000b0a] backdrop-blur-sm">
       {/* Inner Container */}
       <div className="bg-slate-900/60 rounded-[2.5rem] p-6 flex flex-col gap-6 backdrop-blur-md">
         {/* --- Top Control Bar --- */}

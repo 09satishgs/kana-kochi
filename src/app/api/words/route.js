@@ -1,4 +1,4 @@
-import { ERROR, SCRIPT, TOTAL } from "@/constants";
+import { ERROR, SCRIPT, TOTAL } from "@/constants/constants";
 import { getGameWords, createWord } from "@/services/wordService";
 
 export async function GET(req) {

@@ -29,7 +29,7 @@ const CircularTimer = ({
         width="100%"
         height="100%"
         viewBox={`0 0 ${size} ${size}`}
-        className="rotate-[-90deg] overflow-visible"
+        className="-rotate-90 overflow-visible"
       >
         {/* Background Track (Dark Translucent) */}
         <circle

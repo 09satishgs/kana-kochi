@@ -2,16 +2,16 @@
 
 @theme {
   /* Define the custom animation */
-  --animate-clip-wobble: clip-wobble 10s ease-in-out infinite;
+  --animate-clip-wobble: clip-wobble 5s ease-in-out infinite;
   --font-cursive: "Copperplate", "Papyrus", fantasy;
   /* Define the keyframes */
   @keyframes clip-wobble {
     0%,
     100% {
-      clip-path: polygon(0 0, 100% 0%, 100% 115%, 0 85%);
+      clip-path: polygon(0 0, 100% 0%, 100% 101%, 0 99%);
     }
     50% {
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 115%);
+      clip-path: polygon(0 0, 100% 0, 100% 99%, 0 101%);
     }
   }
 }
@@ -158,4 +158,56 @@ html {
     transform: translateY(-5%); /* Adjust jump height here */
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
+}
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(8%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-8%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes divider-fade-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Tailwind hooks */
+.animate-slide-in-left {
+  animation: slide-in-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-divider-fade-in {
+  animation: divider-fade-in 0.4s ease-out both;
+  animation-delay: 0.55s;
 }

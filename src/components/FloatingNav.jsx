@@ -79,7 +79,7 @@ export default function FloatingNav({
         z-50
         flex gap-2
         items-center
-        bg-[#0e031e]/20 backdrop-blur
+        bg-[#000b0a]/20 backdrop-blur
         p-2 rounded-2xl
         shadow-xl
         transition-all duration-200

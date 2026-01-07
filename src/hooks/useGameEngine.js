@@ -3,14 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAudio } from "@/hooks/useAudio";
 import useGenerateRandomData from "./useGenerateRandomData";
+import { MODE_LEVEL_CONFIG } from "@/data/gameConfigs";
 
-const getTotalTime = () => {
-  //Todo
-  return 120;
+const getTotalTime = ({ mode, lvl }) => {
+  return MODE_LEVEL_CONFIG[mode?.toUpperCase()]?.[lvl]?.time || 240;
 };
-const getMaxAllowedMistakes = () => {
-  //Todo
-  return 3;
+const getMaxAllowedMistakes = ({ mode, lvl }) => {
+  return MODE_LEVEL_CONFIG[mode?.toUpperCase()]?.[lvl]?.mistakes || 5;
 };
 const getKeyboardKeys = (len, pool = [], mustHave = []) => {
   // 1. Start with the mandatory keys

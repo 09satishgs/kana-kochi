@@ -1,4 +1,4 @@
-import { ERROR, OK } from "@/constants";
+import { ERROR, OK } from "@/constants/constants";
 import { connectToDatabase } from "@/lib/db/mongoClient";
 
 export async function GET() {

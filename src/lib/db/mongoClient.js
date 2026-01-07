@@ -32,7 +32,7 @@ export const connectToDatabase = async () => {
   cached.client = client;
   cached.db = db;
 
-  console.log("✅ MongoDB connected");
+  console.log("MongoDB connected");
 
   return db;
 };

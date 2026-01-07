@@ -1,4 +1,4 @@
-import { tailwindClass } from "@/constants";
+import { tailwindClass } from "@/constants/constants";
 import { useAudio } from "@/hooks/useAudio";
 import React, { useState, useEffect } from "react";
 

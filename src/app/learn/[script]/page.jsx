@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 
 import LearnKanaClient from "./LearnKanaClient.jsx";
 import usePageTitleUpdater from "@/hooks/usePageTitleUpdater.js";
-import { SCRIPT_CONFIG, INVALID_ROUTE_COPY } from "@/constants.js";
+import { SCRIPT_CONFIG, INVALID_ROUTE_COPY } from "@/constants/constants.js";
 
 /* =========================
    Component

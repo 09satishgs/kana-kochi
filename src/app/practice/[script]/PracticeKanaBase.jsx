@@ -1,7 +1,7 @@
 "use client";
 
 import KanaCard from "@/components/KanaCard";
-import { tailwindClass } from "@/constants";
+import { tailwindClass } from "@/constants/constants";
 import { useNav } from "@/hooks/useNav";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";

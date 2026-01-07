@@ -1,4 +1,4 @@
-import { SCRIPT_CONFIG } from "@/constants";
+import { SCRIPT_CONFIG } from "@/constants/constants";
 import words from "@/data/words";
 import { useEffect, useMemo, useState } from "react";
 

@@ -1,4 +1,8 @@
-import { SCRIPT, KANA, SCRIPT_AND_KANA_ARE_REQUIRED } from "@/constants";
+import {
+  SCRIPT,
+  KANA,
+  SCRIPT_AND_KANA_ARE_REQUIRED,
+} from "@/constants/constants";
 import { getKanaAssets } from "@/services/kanaAssetService";
 
 export async function GET(req) {

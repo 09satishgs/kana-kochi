@@ -40,7 +40,7 @@ export default function AudioGameScreen() {
     // 1. Global Wrapper: Deep Void Background
     <div className="w-full flex items-center justify-center p-2 sm:p-8">
       {/* 2. Main Glass Console */}
-      <div className="relative w-full max-w-7xl bg-slate-900/60 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_-10px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-7xl bg-black/60 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_-10px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
         {/* --- Decorative Top Glow --- */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-cyan-400/50 blur-[20px]" />
 
@@ -299,7 +299,7 @@ function FeedbackModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-[#0e031e]/90 backdrop-blur-md transition-opacity" />
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity" />
 
       <div
         className={`relative w-full max-w-sm bg-slate-900 rounded-3xl border ${theme.border} ${theme.glow} overflow-hidden transform animate-pop-in`}

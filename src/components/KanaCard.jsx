@@ -31,7 +31,7 @@ export default function KanaCard({
           border backdrop-blur-sm cursor-pointer
           ${
             isRevealed
-              ? "bg-slate-800/80 border-cyan-400/50 shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+              ? "bg-slate-800/80 border-black/50 shadow-[0_0_15px_rgba(34,211,238,0.2)]"
               : "bg-slate-900/40 border-white/5 hover:bg-slate-800/60 hover:border-white/10"
           }
         `}
@@ -51,10 +51,10 @@ export default function KanaCard({
             isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
         >
-          <span className="text-sm font-medium text-cyan-400 tracking-widest uppercase">
+          <span className="text-sm font-medium text-white tracking-widest uppercase">
             {romaji}
           </span>
-          <Icon name="Volume2" size={14} className="text-cyan-400" />
+          <Icon name="Volume2" size={14} className="text-white" />
         </div>
       </button>
     );
@@ -69,7 +69,7 @@ export default function KanaCard({
       className="
         group relative aspect-video sm:aspect-square w-full rounded-2xl p-4 flex flex-col items-center justify-around transition-all duration-300
         bg-slate-900/40 border border-white/5 backdrop-blur-sm
-        hover:bg-slate-800/60 hover:border-fuchsia-400/50 hover:shadow-[0_0_15px_rgba(232,121,249,0.2)] hover:-translate-y-1
+        hover:bg-slate-800/60 hover:border-black/50 hover:shadow-[0_0_15px_rgba(232,121,249,0.2)] hover:-translate-y-1
         cursor-pointer
       "
     >
@@ -80,7 +80,7 @@ export default function KanaCard({
 
       {/* Hover Icon (Visual cue that this is for drawing) */}
       <div className="absolute bottom-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-        <Icon name="PenTool" size={16} className="text-fuchsia-400" />
+        <Icon name="PenTool" size={16} className="text-white" />
       </div>
     </Link>
   );

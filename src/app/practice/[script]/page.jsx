@@ -10,7 +10,7 @@ import { katakana } from "@/data/katakana";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
 import PracticeKanaBase from "./PracticeKanaBase";
-import { SCRIPT_CONFIG } from "@/constants";
+import { SCRIPT_CONFIG } from "@/constants/constants";
 import Loader from "@/components/Loader";
 
 export default function StrokePracticePage() {

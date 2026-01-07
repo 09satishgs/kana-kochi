@@ -1,5 +1,5 @@
-const { hiragana } = require("./data/hiragana");
-const { katakana } = require("./data/katakana");
+const { hiragana } = require("../data/hiragana");
+const { katakana } = require("../data/katakana");
 
 /* =========================
    Constants

@@ -8,7 +8,7 @@ import { useCallback } from "react";
  * Centralized hook for handling SpeechSynthesis.
  * Keeps audio logic out of UI components.
  */
-export function useAudio({ lang = "ja-JP", rate = 0.9, pitch = 1 } = {}) {
+export function useAudio({ lang = "ja-JP", rate = 0.6, pitch = 0.8 } = {}) {
   const speak = useCallback(
     (text) => {
       if (typeof window === "undefined") return;

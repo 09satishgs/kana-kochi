@@ -4,6 +4,7 @@ import { GlobalsProvider } from "@/contexts/GlobalsContext";
 import FloatingNav from "@/components/FloatingNav";
 import { LEFT_NAV_CONFIG } from "@/data/navConfig";
 import WelcomeUser from "@/components/WelcomeUser";
+import BackendSyncGate from "@/components/BackendSyncGate";
 
 export const metadata = {
   title: "Kana Kochi",
@@ -22,6 +23,7 @@ export default async function RootLayout({ children }) {
           />
           <div className="px-20">{children}</div>
           <WelcomeUser />
+          <BackendSyncGate />
         </GlobalsProvider>
       </body>
     </html>

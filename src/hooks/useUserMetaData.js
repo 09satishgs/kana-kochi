@@ -1,8 +1,57 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { setlocalStrorageItem, updateAtPath } from "../helpers";
+import { STORAGE_KEY, PENDING_BACKEND_SYNC_KEY } from "@/constants/constants";
 
-const STORAGE_KEY = "kanaKochiUserData";
+/**
+ * Users MetaData Schema:
+ * {
+  _id: ObjectId,
+  userId: String,          // e.g. "santa", "nobi7"
+  createdAt: Number,       // Date.now()
+  lastActiveAt: Number,    // Date.now()
+
+  revision: Number,        // Date.now(), last-write-wins
+
+  achievements: {
+    hiragana: {
+      letters: {
+        lvl0: {
+          wins: Number,
+          gameOvers: Number,
+          longestStreak: Number,
+          bestTimeMs: Number
+        },
+        lvl1: { ... },
+        lvl2: { ... },
+        lvl3: { ... },
+        lvl4: { ... }
+      },
+      words: {
+        lvl0: { ... },
+        lvl1: { ... },
+        lvl2: { ... },
+        lvl3: { ... },
+        lvl4: { ... }
+      }
+    },
+
+    katakana: {
+      letters: { ... },
+      words: { ... }
+    }
+  },
+
+  // aggregate stats
+  stats: {
+    learnMs: Number,
+    practiceMs: Number,
+    playMs: Number
+  }
+}
+ * 
+ */
 
 const useUserMetaData = () => {
   const userDataRef = useRef(null);
@@ -38,7 +87,11 @@ const useUserMetaData = () => {
       );
 
       // 409 = client already has latest
-      if (res.status === 409) return;
+      if (res.status === 409) {
+        setlocalStrorageItem(PENDING_BACKEND_SYNC_KEY, false);
+        updateUserData({});
+        return;
+      }
       if (!res.ok) return;
 
       const fresh = await res.json();
@@ -85,6 +138,7 @@ const useUserMetaData = () => {
     return user;
   };
 
+  // Optimistic update with silent backend sync (revision needs to be passed every time)
   const updateUserData = async (delta) => {
     const local = userDataRef.current;
     if (!local?.userId) return;
@@ -92,7 +146,6 @@ const useUserMetaData = () => {
     const updated = {
       ...local,
       ...delta,
-      revision: Date.now(),
       lastActiveAt: Date.now(),
     };
 
@@ -108,12 +161,51 @@ const useUserMetaData = () => {
         body: JSON.stringify({
           userId: updated.userId,
           revision: updated.revision,
-          delta,
+          delta: { achievements: updated.achievements, stats: updated.stats },
         }),
       });
     } catch (e) {
       console.error(e);
       // ignore; will reconcile later
+    }
+  };
+
+  const updateMeta = async (
+    partialUpdate,
+    path,
+    options = { localOnly: false }
+  ) => {
+    const local = userDataRef.current;
+    if (!local?.userId) return;
+
+    const updatedUser = updateAtPath(local, path, partialUpdate);
+
+    updatedUser.revision = Date.now();
+    updatedUser.lastActiveAt = Date.now();
+
+    // ✅ Always update locally
+    userDataRef.current = updatedUser;
+    saveToLocalStorage(updatedUser);
+
+    // ❌ Skip backend if localOnly
+    if (options.localOnly) {
+      setlocalStrorageItem(PENDING_BACKEND_SYNC_KEY, true);
+      return;
+    }
+
+    // ✅ Silent backend update
+    try {
+      await fetch("/api/users", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: updatedUser.userId,
+          revision: updatedUser.revision,
+          delta: updatedUser.achievements,
+        }),
+      });
+    } catch {
+      // silent failure
     }
   };
 
@@ -130,9 +222,11 @@ const useUserMetaData = () => {
     getUserData,
     createUser,
     updateUserData,
+    updateMeta,
     refreshUserData,
     savedData: userDataRef.current,
     userFound,
+    syncBackend: updateUserData.bind(null, {}),
   };
 };
 

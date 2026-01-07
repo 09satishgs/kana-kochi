@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { useNav } from "@/hooks/useNav";
 
 export default function FloatingNav({
   config,
@@ -164,6 +164,11 @@ export default function FloatingNav({
 }
 
 function NavButton({ item, expanded, navLink, onExpand, active, onClick }) {
+  const { navigate } = useNav();
+  const handleNavigate = (e, href) => {
+    e.preventDefault();
+    navigate(href);
+  };
   return (
     <div
       onClick={onClick}
@@ -182,14 +187,14 @@ function NavButton({ item, expanded, navLink, onExpand, active, onClick }) {
       `}
     >
       {/* Navigate zone */}
-      <Link
-        href={navLink}
+      <div
         className="
           flex items-center gap-3
           px-4 py-3
           flex-1
           select-none
         "
+        onClick={(e) => handleNavigate(e, navLink)}
       >
         {item.icon && (
           <Icon name={item.icon} size={22} className="text-white min-w-5.5" />
@@ -198,7 +203,7 @@ function NavButton({ item, expanded, navLink, onExpand, active, onClick }) {
         {expanded && (
           <span className="text-white whitespace-nowrap">{item.label}</span>
         )}
-      </Link>
+      </div>
 
       {/* Expand zone */}
       {expanded && item.innerRoutes && (

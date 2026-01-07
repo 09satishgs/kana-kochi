@@ -1,6 +1,6 @@
 # Kana-Kochi
 
-<img width="1905" height="832" alt="Image" src="https://github.com/user-attachments/assets/3046d738-8661-4908-8d09-7d2f19a95784" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/01fd40f3-d8dc-466e-abcd-4e88d49393e7" />
 
 **Master Japanese Hiragana and Katakana through Learning, Practice, and Play.**
 
@@ -34,8 +34,8 @@ A foundational module for visual and auditory memorization.
 - **Audio Integration:** Hover or click on any character to hear its accurate pronunciation.
 - **Goal:** Establish character recognition before attempting to write.
 
-<img width="1919" height="863" alt="Image" src="https://github.com/user-attachments/assets/37c8beef-e985-4c1c-84e6-2feabac66d48" />
-<img width="1919" height="902" alt="Image" src="https://github.com/user-attachments/assets/80fa4958-9e6b-44aa-8115-d87c4f5e1695" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/478d6e2b-f44b-4197-9ea0-39210ca18eb3" />
+<img width="3840" height="6936" alt="Image" src="https://github.com/user-attachments/assets/c9646ad6-1dc8-4cb9-bfe6-596c3920bb0b" />
 
 ### 2. The Practice Layer: Stroke Mastery
 
@@ -45,8 +45,9 @@ Focuses on writing mechanics and muscle memory.
 - **Interactive Canvas:** A drawing area allows users to practice strokes immediately.
 - **Input Support:** Optimized for Mouse, Touchpad, and Stylus/Pen devices.
 
-<img width="1919" height="906" alt="Image" src="https://github.com/user-attachments/assets/f4ac2220-db25-40ef-ac5b-5cd64d851c00" />
-<img width="1919" height="909" alt="Image" src="https://github.com/user-attachments/assets/9784c631-ed70-4637-91ee-05c8bd7e31f5" />
+<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/625bce3d-35b6-40c5-b979-07f55f8c8ae3" />
+<img width="3840" height="6936" alt="Image" src="https://github.com/user-attachments/assets/26c522e5-79c4-43db-b7f1-36c9d5421977" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/bd375da1-1ded-4898-9c87-c11ec2e924f3" />
 
 ### 3. The Gaming Layer: Gamified Reinforcement
 
@@ -62,9 +63,30 @@ A "Play-to-Learn" arena with difficulty scaling (Time Limits, Health/Lives).
 - **Gameplay:** Users hear a full Japanese word and must construct it by selecting characters in the correct order to fill empty boxes.
 - **Mechanic:** Tests vocabulary and sequential character placement.
 
-<img width="1919" height="881" alt="Image" src="https://github.com/user-attachments/assets/bdd7198b-361d-4118-9fc7-088d447f2346" />
-<img width="1919" height="893" alt="Image" src="https://github.com/user-attachments/assets/51037b06-d963-4bf6-ab1e-27fa6ad3fddd" />
+<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/e0fed41b-f616-43d3-9509-29476da676ec" />
+<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/f1439252-0a97-416d-aba7-7a261d44680a" />
+<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/cf856f07-9332-45a0-bdfd-115b249013f2" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/5f88acd8-ed27-4e6c-9609-c39ac97fcfdf" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/3db15478-8280-4ab3-bd89-07971c6614cd" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/8b14da0f-a22a-4fee-b666-b9a3cf851128" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/85f80f4a-1274-4492-b1a7-580383152132" />
+<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/a05ee8b7-defc-4360-9997-5d077c844b00" />
 ---
+
+
+### 4. The Achievements: A Brief look at User Data
+
+<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/910bcb8b-20ac-45a5-95b2-d0997168a11f" />
+
+
+### 5. Miscellenious Screens:
+
+Under Development Settings Page
+<img width="1919" height="839" alt="image" src="https://github.com/user-attachments/assets/27a6078e-eae3-49d8-87af-68aea8859ef3" />
+
+
+Quick Nav for fast Navigation from anywhere
+<img width="706" height="637" alt="Image" src="https://github.com/user-attachments/assets/fd46164b-323d-43ee-b092-555ed18ed9a5" />
 
 ## 🏗️ Architecture & Technical Implementation
 

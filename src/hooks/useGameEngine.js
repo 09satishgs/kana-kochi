@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useAudio } from "@/hooks/useAudio";
 import useGenerateRandomData from "./useGenerateRandomData";
 import { MODE_LEVEL_CONFIG } from "@/data/gameConfigs";
+import useUserMetaData from "@/hooks/useUserMetaData";
 
 const getTotalTime = ({ mode, lvl }) => {
   return MODE_LEVEL_CONFIG[mode?.toUpperCase()]?.[lvl]?.time || 240;
@@ -53,9 +54,35 @@ const getNextExpectedChar = (selectedChars = [], correctChars = []) => {
     return char;
   });
 };
+const getTotalWins = (isWin, data, script, mode, lvl) => {
+  const prevWins =
+    data?.achievements?.[script]?.[mode]?.[`lvl${lvl}`]?.wins || 0;
+  return isWin ? prevWins + 1 : prevWins;
+};
+const getTotalGameOvers = (isWin, data, script, mode, lvl) => {
+  const prevGameOvers =
+    data?.achievements?.[script]?.[mode]?.[`lvl${lvl}`]?.gameOvers || 0;
+  return isWin ? prevGameOvers : prevGameOvers + 1;
+};
+const getBestTimeMs = (timeSpent, isWin, data, script, mode, lvl) => {
+  if (!isWin) {
+    return data?.achievements?.[script]?.[mode]?.[`lvl${lvl}`]?.bestTimeMs;
+  }
+  const prevBestTime =
+    data?.achievements?.[script]?.[mode]?.[`lvl${lvl}`]?.bestTimeMs || Infinity;
+  const currentTimeMs = timeSpent * 1000;
+  return Math.min(prevBestTime, currentTimeMs);
+};
+
+const getLongestStreak = (currentStreak, data, script, mode, lvl) => {
+  const prevLongestStreak =
+    data?.achievements?.[script]?.[mode]?.[`lvl${lvl}`]?.longestStreak || 0;
+  return Math.max(prevLongestStreak, currentStreak);
+};
 
 export function useGameEngine({ script, mode, lvl }) {
   const { play } = useAudio({ lang: "ja-JP" });
+  const { savedData, updateMeta } = useUserMetaData();
   const { pickARandom, allKeys } = useGenerateRandomData({
     script,
     mode,
@@ -113,6 +140,30 @@ export function useGameEngine({ script, mode, lvl }) {
     };
   }, [totalTime, timeSpent, feedback?.isCompleted]);
 
+  useEffect(() => {
+    if (!feedback?.isCompleted || !current) return;
+
+    const isWin = feedback.isCorrect;
+    const path = `achievements.${script}.${mode}.lvl${lvl}`;
+    updateMeta(
+      {
+        wins: getTotalWins(isWin, savedData, script, mode, lvl),
+        gameOvers: getTotalGameOvers(isWin, savedData, script, mode, lvl),
+        bestTimeMs: getBestTimeMs(
+          timeSpent,
+          isWin,
+          savedData,
+          script,
+          mode,
+          lvl
+        ),
+        longestStreak: getLongestStreak(streak, savedData, script, mode, lvl),
+      },
+      path,
+      { localOnly: true }
+    );
+  }, [feedback?.isCompleted]);
+
   /* ---------------- User Interaction ---------------- */
   const selectLetter = (char) => {
     //Todo : Recheck
@@ -149,6 +200,8 @@ export function useGameEngine({ script, mode, lvl }) {
       // 3. Feedback logic (Optional: fail immediately? or just warn?)
       // For now, we just reset. If you want to end game on X mistakes:
       if (incorrectValues.length + 1 >= maxAllowedMistakes) {
+        setStreak(0);
+
         setFeedback({
           isCorrect: false,
           message: "Too many mistakes! Try again.",

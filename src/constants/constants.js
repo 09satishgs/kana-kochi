@@ -46,3 +46,5 @@ export const USERID_REQUIRED = "userId required";
 export const TOTAL = 100;
 export const ERROR = "error";
 export const OK = "ok";
+export const STORAGE_KEY = "kanaKochiUserData";
+export const PENDING_BACKEND_SYNC_KEY = "userDataNeedsSync";

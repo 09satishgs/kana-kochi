@@ -81,7 +81,7 @@ export default function AchievementsPage() {
             iconName="icon-book"
             iconColor="text-blue-400"
             label="Learning Time"
-            value={formatDuration(user?.stats?.learningMs)}
+            value={formatDuration(user?.stats?.learnMs)}
           />
           <StatCard
             iconName="PenTool"

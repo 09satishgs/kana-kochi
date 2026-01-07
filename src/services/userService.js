@@ -15,7 +15,7 @@ const createEmptyUser = (userId) => ({
   },
 
   stats: {
-    learningMs: 0,
+    learnMs: 0,
     practiceMs: 0,
     playMs: 0,
   },

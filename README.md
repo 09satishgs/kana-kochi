@@ -76,7 +76,7 @@ This project uses a **custom asset delivery architecture**:
 Running the app locally is fully possible, but **intentionally non-trivial**, as it mirrors real-world system complexity.
 
 👉 **To run the app locally or experiment with the architecture, follow the step-by-step guide here:**  
-📄 **[`ARCHITECTURE.md`]([./ARCHITECTURE.md](https://github.com/user-attachments/files/24499337/test.file.pdf))**
+📄 **[`Architecture_Notes.pdf`](https://github.com/user-attachments/files/24499612/KanaKochi_Architecture_Notes.pdf)**
 
 This guide explains:
 - How the Telegram-based asset pipeline works

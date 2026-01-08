@@ -1,150 +1,189 @@
-# Kana-Kochi
+# 🌸 Kana-Kochi
 
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/01fd40f3-d8dc-466e-abcd-4e88d49393e7" />
+<p align="center">
+  <img width="1905" height="832" alt="Image" src="https://github.com/user-attachments/assets/3046d738-8661-4908-8d09-7d2f19a95784" />
+</p>
 
-**Master Japanese Hiragana and Katakana through Learning, Practice, and Play.**
+<p align="center">
+  <strong>Master Japanese Hiragana and Katakana through structured learning, deliberate practice, and play-driven reinforcement.</strong>
+</p>
 
-[**View Live Demo**](https://kana-kochi.vercel.app)
+<p align="center">
+  🚀 <a href="https://kana-kochi.vercel.app"><strong>View Live Demo</strong></a>
+</p>
 
 ---
 
-> ⚠️ **Note to Visitors:** This repository is for **showcase and code inspection purposes only**.
->
-> The application logic relies on private Telegram API keys for asset hosting and a proprietary MongoDB dataset containing specific character-to-file-ID mappings. As these credentials and data are not public, this project is **not intended to be run locally**.
+## ⚠️ Important Note for Reviewers
+
+> **This project uses a custom serverless CMS architecture powered by Telegram.**
+
+- 🔊 Audio pronunciations & ✍️ stroke-order videos are **hosted on Telegram**
+- 🗂️ Assets are referenced via **Telegram File IDs stored in MongoDB**
+- 🔄 Media is fetched dynamically using the **Telegram Bot API**
+
+Because this setup depends on **private bot credentials and seeded DB mappings**,  
+this repository is intended for **code inspection and architectural review only**.
+
+👉 **Please use the live app for the full experience:**  
+https://kana-kochi.vercel.app
 
 ---
 
 ## 📖 Overview
 
-**Kana-Kochi** is a comprehensive language learning application built with **Next.js 16**. It is designed to help beginners master the Japanese writing systems (Kana) through a structured three-layer approach: **Learn, Practice, and Play**.
+**Kana-Kochi** is a Japanese language learning application built with **Next.js 16 (App Router)** and **React 19**.
 
-Unlike standard flashcard apps, Kana-Kochi emphasizes muscle memory through stroke practice and reinforces learning through gamified challenges with dynamic difficulty scaling.
+It helps beginners master **Hiragana and Katakana** using a deliberate **three-layer learning model**:
+
+| Learn                      | Practice                     | Play                   |
+| -------------------------- | ---------------------------- | ---------------------- |
+| Visual & audio recognition | Stroke order & muscle memory | Gamified reinforcement |
+
+Unlike flashcard-heavy apps, Kana-Kochi focuses on **writing mechanics, recall under pressure, and repetition through interaction** — closer to how humans actually learn scripts.
 
 ---
 
-## ✨ Key Features
+## ✨ Core Learning Model
 
-The application is divided into three distinct layers to guide the user from recognition to mastery.
+## 1️⃣ Learning Layer — Interactive Kana Charts
 
-### 1. The Learning Layer: Interactive Charts
+**Purpose:** Visual and auditory recognition
 
-A foundational module for visual and auditory memorization.
+- ✅ Complete Hiragana & Katakana syllabaries
+- 🔊 Click / hover to hear accurate pronunciation
+- 🎯 Clean, distraction-free layout
 
-- **Complete Syllabary:** Full charts for both **Hiragana** and **Katakana**.
-- **Audio Integration:** Hover or click on any character to hear its accurate pronunciation.
-- **Goal:** Establish character recognition before attempting to write.
+### Preview
 
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/478d6e2b-f44b-4197-9ea0-39210ca18eb3" />
-<img width="3840" height="6936" alt="Image" src="https://github.com/user-attachments/assets/c9646ad6-1dc8-4cb9-bfe6-596c3920bb0b" />
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/37c8beef-e985-4c1c-84e6-2feabac66d48" alt="Hiragana Chart" /></td>
+    <td><img src="https://github.com/user-attachments/assets/80fa4958-9e6b-44aa-8115-d87c4f5e1695" alt="Katakana Chart" /></td>
+  </tr>
+</table>
 
-### 2. The Practice Layer: Stroke Mastery
-
-Focuses on writing mechanics and muscle memory.
-
-- **Visual Reference:** Video loops demonstrate the correct stroke order and direction.
-- **Interactive Canvas:** A drawing area allows users to practice strokes immediately.
-- **Input Support:** Optimized for Mouse, Touchpad, and Stylus/Pen devices.
-
-<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/625bce3d-35b6-40c5-b979-07f55f8c8ae3" />
-<img width="3840" height="6936" alt="Image" src="https://github.com/user-attachments/assets/26c522e5-79c4-43db-b7f1-36c9d5421977" />
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/bd375da1-1ded-4898-9c87-c11ec2e924f3" />
-
-### 3. The Gaming Layer: Gamified Reinforcement
-
-A "Play-to-Learn" arena with difficulty scaling (Time Limits, Health/Lives).
-
-**Mode A: Audio-to-Character Match**
-
-- **Gameplay:** A sound is played, and the user must identify the correct character key from a list.
-- **Mechanic:** Tests auditory recognition and speed.
-
-**Mode B: Pick the Correct Word**
-
-- **Gameplay:** Users hear a full Japanese word and must construct it by selecting characters in the correct order to fill empty boxes.
-- **Mechanic:** Tests vocabulary and sequential character placement.
-
-<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/e0fed41b-f616-43d3-9509-29476da676ec" />
-<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/f1439252-0a97-416d-aba7-7a261d44680a" />
-<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/cf856f07-9332-45a0-bdfd-115b249013f2" />
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/5f88acd8-ed27-4e6c-9609-c39ac97fcfdf" />
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/3db15478-8280-4ab3-bd89-07971c6614cd" />
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/8b14da0f-a22a-4fee-b666-b9a3cf851128" />
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/85f80f4a-1274-4492-b1a7-580383152132" />
-<img width="3840" height="2160" alt="Image" src="https://github.com/user-attachments/assets/a05ee8b7-defc-4360-9997-5d077c844b00" />
 ---
 
+## 2️⃣ Practice Layer — Stroke Order & Muscle Memory
 
-### 4. The Achievements: A Brief look at User Data
+**Purpose:** Learn _how_ characters are written
 
-<img width="3840" height="2328" alt="Image" src="https://github.com/user-attachments/assets/910bcb8b-20ac-45a5-95b2-d0997168a11f" />
+- 🎥 Looping stroke-order videos
+- ✍️ Interactive drawing canvas
+- 🖱️ Optimized for mouse, touchpad & stylus
 
+### Preview
 
-### 5. Miscellenious Screens:
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/f4ac2220-db25-40ef-ac5b-5cd64d851c00" alt="Stroke Video" /></td>
+    <td><img src="https://github.com/user-attachments/assets/9784c631-ed70-4637-91ee-05c8bd7e31f5" alt="Practice Canvas" /></td>
+  </tr>
+</table>
 
-Under Development Settings Page
-<img width="1919" height="839" alt="image" src="https://github.com/user-attachments/assets/27a6078e-eae3-49d8-87af-68aea8859ef3" />
+---
 
+## 3️⃣ Gaming Layer — Play-to-Learn Reinforcement
 
-Quick Nav for fast Navigation from anywhere
-<img width="706" height="637" alt="Image" src="https://github.com/user-attachments/assets/fd46164b-323d-43ee-b092-555ed18ed9a5" />
+**Purpose:** Stress-test recall and recognition
 
-## 🏗️ Architecture & Technical Implementation
+### 🎧 Mode A — Audio → Character Match
 
-**Current Status:** Deployed & Active
+- Hear a sound, pick the correct kana
+- Tests auditory recognition & reaction speed
 
-While this project cannot be run locally without the private environment keys, the codebase follows a standard **Next.js 16** structure combined with **MongoDB** patterns.
+### 🧩 Mode B — Word Construction
 
-### System Dependencies
+- Hear a Japanese word
+- Build it by selecting characters in order
+- Reinforces sequencing & vocabulary
 
-The application logic is tightly coupled with the following external services:
+**Dynamic Difficulty**
 
-1.  **MongoDB Atlas:** Stores user progress and intricate mappings between Japanese characters and asset IDs.
-2.  **Telegram Bot API:** Acts as the Content Delivery Network (CDN) for hosting audio pronunciations and stroke order videos.
-3.  **Telegram File IDs:** The UI renders assets dynamically by fetching File IDs stored in the DB; without the specific DB seed data, the UI will not render content.
+- ⏱️ Time limits
+- ❤️ Health / lives system
 
-### Codebase Highlights
+### Preview
 
-If you are reviewing the code, I recommend looking at:
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/bdd7198b-361d-4118-9fc7-088d447f2346" alt="Audio Game" /></td>
+    <td><img src="https://github.com/user-attachments/assets/51037b06-d963-4bf6-ab1e-27fa6ad3fddd" alt="Word Game" /></td>
+  </tr>
+</table>
 
-- `app/` directory for the **Next.js App Router** implementation.
-- `components/` to see how **Tailwind CSS v4** is utilized for the responsive game UI.
-- `lib/` (or equivalent) to review the **MongoDB** connection logic and data fetching strategies.
+---
+
+## 🏗️ Architecture & Technical Design
+
+**Status:** ✅ Deployed & Active
+
+Kana-Kochi uses a **non-traditional, serverless-friendly architecture** optimized for media-heavy educational content.
+
+### 🔑 Key Decisions
+
+#### 📦 Telegram as Asset Layer
+
+- High-availability media hosting
+- Audio & video uploaded once
+- Referenced via **Telegram File IDs**
+
+#### 🗂️ MongoDB as Mapping Layer
+
+- Maps kana, words, and asset IDs
+- Enables fully data-driven UI rendering
+
+#### 🔄 Runtime Asset Fetching
+
+- Assets fetched securely via Bot API
+- UI decoupled from physical asset storage
+
+### 🧪 Local Development (Conceptual)
+
+To make this locally runnable:
+
+- Replace Telegram assets with static placeholders
+- Use mock datasets instead of File IDs
+- API boundaries already support this swap
 
 ---
 
 ## 🛠️ Tech Stack
 
-This project utilizes the latest features of the React ecosystem.
-
-- **Framework:** [Next.js 16.0.10](https://nextjs.org/) (App Router)
-- **UI Library:** [React 19.2.0](https://react.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Database:** [MongoDB v7.0.0](https://www.mongodb.com/)
-- **Linter:** ESLint
+| Category  | Tech                         |
+| --------- | ---------------------------- |
+| Framework | Next.js 16.0.10 (App Router) |
+| UI        | React 19.2.0                 |
+| Styling   | Tailwind CSS v4              |
+| Database  | MongoDB Atlas (v7)           |
+| Tooling   | ESLint                       |
 
 ---
 
-## 📜 Development Scripts
+## ♿ Accessibility Considerations
 
-_For reference, these are the scripts defined in `package.json` used during the development of this application:_
+- 🎨 High-contrast, readable UI
+- 🔊 Audio-based learning modes
+- ✍️ Multiple input methods supported
 
-| Script          | Description                                       |
-| :-------------- | :------------------------------------------------ |
-| `npm run dev`   | Starts the Next.js development server.            |
-| `npm run build` | Builds the application for production deployment. |
-| `npm run start` | Runs the built production application.            |
-| `npm run lint`  | Runs ESLint for code quality checks.              |
+**Planned**
+
+- Keyboard-only navigation
+- Improved visual feedback on mistakes
 
 ---
 
 ## 🔮 Roadmap
 
-- [ ] Add Kanji support.
-- [ ] User authentication to save progress/high scores.
-- [ ] Leaderboard
+- [ ] User authentication & progress sync
+- [ ] Global leaderboard & stats
+- [ ] Kanji module (stroke-aware, phased rollout)
 
 ---
 
 ## 📄 License
 
-Proprietary
+**Proprietary**
+
+Built for **learning, demonstration, and portfolio use**.

@@ -65,6 +65,60 @@ Kana-Kochi tracks meaningful progress signals, including:
 This data is used to reinforce consistency and improvement over time.
 
 ---
+## 🖼️ App Previews
+<table>
+  <thead>
+    <tr>
+      <th colspan="12" align="center">Kana Kochi Screenshots</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th colspan="12" align="center">📖 Learning Layer (Interactive Charts)</th>
+    </tr>
+    <tr>
+      <td colspan="7"><img src="https://github.com/user-attachments/assets/478d6e2b-f44b-4197-9ea0-39210ca18eb3" alt="Kana Chart Overview" /></td>
+      <td colspan="5"><img src="https://github.com/user-attachments/assets/c9646ad6-1dc8-4cb9-bfe6-596c3920bb0b" alt="Full Kana Chart" /></td>
+    </tr>
+    <tr>
+      <th colspan="12" align="center">✍️ Practice Layer (Stroke Mastery)</th>
+    </tr>
+    <tr>
+      <td colspan="7">
+        <img src="https://github.com/user-attachments/assets/625bce3d-35b6-40c5-b979-07f55f8c8ae3" alt="Stroke Reference" />
+      <img src="https://github.com/user-attachments/assets/bd375da1-1ded-4898-9c87-c11ec2e924f3" alt="Practice Canvas" />
+      </td>
+      <td colspan="5"><img src="https://github.com/user-attachments/assets/26c522e5-79c4-43db-b7f1-36c9d5421977" alt="Stroke Practice" /></td>
+    </tr>
+    <tr>
+      <th colspan="12" align="center">🎮 Gaming Layer (Modes & Challenges)</th>
+    </tr>
+    <tr>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/e0fed41b-f616-43d3-9509-29476da676ec" alt="Game Mode 1" /></td>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/f1439252-0a97-416d-aba7-7a261d44680a" alt="Game Mode 2" /></td>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/cf856f07-9332-45a0-bdfd-115b249013f2" alt="Game Mode 3" /></td>
+    </tr>
+    <tr>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/5f88acd8-ed27-4e6c-9609-c39ac97fcfdf" alt="Game Mode 4" /></td>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/3db15478-8280-4ab3-bd89-07971c6614cd" alt="Game Mode 5" /></td>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/85f80f4a-1274-4492-b1a7-580383152132" alt="Game Summary" /></td>
+    </tr>
+    <tr>
+      <td colspan="12" align="center">
+        <img src="https://github.com/user-attachments/assets/6e45d102-acc3-4c70-9ec1-0f3c08f0d976" alt="Wide Game View" width="100%" />
+      </td>
+    </tr>
+    <tr>
+      <th colspan="12" align="center">🏆 Stats, Settings & Navigation</th>
+    </tr>
+    <tr>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/910bcb8b-20ac-45a5-95b2-d0997168a11f" alt="Achievements" /></td>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/27a6078e-eae3-49d8-87af-68aea8859ef3" alt="Settings Page" /></td>
+      <td colspan="4"><img src="https://github.com/user-attachments/assets/fd46164b-323d-43ee-b092-555ed18ed9a5" alt="Quick Nav" /></td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## 🧪 Running Locally & Architecture
 

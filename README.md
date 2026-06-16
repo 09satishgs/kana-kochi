@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  🚀 <a href="https://kana-kochi.vercel.app"><strong>View Live Demo</strong></a>
+  🚀 <a href="https://projects.satishg.in/kanakochi"><strong>View Live Demo</strong></a>
 </p>
 
 ---

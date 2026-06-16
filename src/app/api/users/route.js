@@ -3,7 +3,7 @@ import { getUser, createUser, updateUser } from "@/services/userService";
 import { USERID_REQUIRED } from "@/constants/constants";
 
 /* =========================
-   GET /api/users?userId=&revision=
+   GET /kanakochi/api/users?userId=&revision=
 ========================= */
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
@@ -29,7 +29,7 @@ export async function GET(req) {
 }
 
 /* =========================
-   POST /api/users
+   POST /kanakochi/api/users
    create new user
 ========================= */
 export async function POST(req) {
@@ -46,7 +46,7 @@ export async function POST(req) {
 }
 
 /* =========================
-   PATCH /api/users
+   PATCH /kanakochi/api/users
    optimistic update
 ========================= */
 export async function PATCH(req) {
@@ -67,7 +67,7 @@ export async function PATCH(req) {
   if (!updated) {
     return NextResponse.json(
       { error: "Stale update ignored" },
-      { status: 409 }
+      { status: 409 },
     );
   }
 

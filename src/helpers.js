@@ -26,3 +26,11 @@ export const getLocalStrorageItem = (key) => {
   const item = localStorage.getItem(key);
   return item ? JSON.parse(item) : null;
 };
+
+export const apiFetch = (url, ...params) => {
+  if (typeof url === "string" && url.startsWith("/api")) {
+    return fetch(`/kanakochi${url}`, ...params);
+  } else {
+    return fetch(url, ...params);
+  }
+};

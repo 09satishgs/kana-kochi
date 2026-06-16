@@ -3,6 +3,7 @@
 import { useState, useEffect, use } from "react";
 // Adjust the import path based on your actual project structure
 import useUserMetaData from "@/hooks/useUserMetaData";
+import { apiFetch } from "@/helpers";
 
 export default function WelcomeUser() {
   const { createUser, userFound } = useUserMetaData();
@@ -17,7 +18,7 @@ export default function WelcomeUser() {
   useEffect(() => {
     const fetchUsernames = async () => {
       try {
-        const res = await fetch("/api/usernames");
+        const res = await apiFetch("/api/usernames");
         const data = await res.json();
 
         if (data.usernames && Array.isArray(data.usernames)) {

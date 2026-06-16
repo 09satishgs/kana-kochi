@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { setlocalStrorageItem, updateAtPath } from "../helpers";
+import { apiFetch, setlocalStrorageItem, updateAtPath } from "../helpers";
 import { STORAGE_KEY, PENDING_BACKEND_SYNC_KEY } from "@/constants/constants";
 
 /**
@@ -82,8 +82,8 @@ const useUserMetaData = () => {
     if (!local?.userId || !local?.revision) return;
 
     try {
-      const res = await fetch(
-        `/api/users?userId=${local.userId}&revision=${local.revision}`
+      const res = await apiFetch(
+        `/api/users?userId=${local.userId}&revision=${local.revision}`,
       );
 
       // 409 = client already has latest
@@ -125,7 +125,7 @@ const useUserMetaData = () => {
   };
 
   const createUser = async (userId) => {
-    const res = await fetch("/api/users", {
+    const res = await apiFetch("/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
@@ -155,7 +155,7 @@ const useUserMetaData = () => {
 
     // silent backend sync
     try {
-      await fetch("/api/users", {
+      await apiFetch("/api/users", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -173,7 +173,7 @@ const useUserMetaData = () => {
   const updateMeta = async (
     partialUpdate,
     path,
-    options = { localOnly: false }
+    options = { localOnly: false },
   ) => {
     const local = userDataRef.current;
     if (!local?.userId) return;
@@ -195,7 +195,7 @@ const useUserMetaData = () => {
 
     // ✅ Silent backend update
     try {
-      await fetch("/api/users", {
+      await apiFetch("/api/users", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

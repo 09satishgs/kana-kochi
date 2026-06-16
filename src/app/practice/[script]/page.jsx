@@ -12,6 +12,7 @@ import usePageTitleUpdater from "@/hooks/usePageTitleUpdater";
 import PracticeKanaBase from "./PracticeKanaBase";
 import { SCRIPT_CONFIG } from "@/constants/constants";
 import Loader from "@/components/Loader";
+import { apiFetch } from "@/helpers";
 
 export default function StrokePracticePage() {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export default function StrokePracticePage() {
   const config = SCRIPT_CONFIG?.[script];
   const kana = searchParams.get("kana");
   usePageTitleUpdater(
-    !kana ? `Practice  ---  Click on the Kana` : `Practice  ---  ${kana}`
+    !kana ? `Practice  ---  Click on the Kana` : `Practice  ---  ${kana}`,
   );
 
   const { navigate, prefetch } = useNav();
@@ -60,7 +61,7 @@ export default function StrokePracticePage() {
   useEffect(() => {
     if (!kana || !script) return;
 
-    fetch(`/api/kana/assets?script=${script}&kana=${kana}`)
+    apiFetch(`/api/kana/assets?script=${script}&kana=${kana}`)
       .then((res) => res.json())
       .then(setAssets)
       .catch(console.error);
